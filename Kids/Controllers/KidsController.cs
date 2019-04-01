@@ -8,7 +8,7 @@ namespace Kids.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class KidsController : ControllerBase
     {
         // GET api/values
         [HttpGet]
