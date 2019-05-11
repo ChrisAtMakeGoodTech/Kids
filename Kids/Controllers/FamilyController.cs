@@ -6,40 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kids.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class FamilyController : ControllerBase
     {
         // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [HttpPost]
+        public ActionResult<IEnumerable<string>> Index([FromBody] int family)
+        {
+            return new string[] { "index", family.ToString() };
+        }
+
+        [HttpPost()]
+        public ActionResult<IEnumerable<string>> Actions([FromBody] int id)
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
