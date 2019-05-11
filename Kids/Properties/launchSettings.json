@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/Kids",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:52430",
       "sslPort": 44344
@@ -30,6 +34,9 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/kids"
+    },
+    "Local IIS": {
+      "commandName": "IIS"
     }
   }
 }
