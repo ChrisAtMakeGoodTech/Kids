@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kids.Data
+namespace Kids.Data.Models
 {
     public partial class Family
     {

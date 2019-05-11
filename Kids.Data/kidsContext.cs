@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Kids.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 
 namespace Kids.Data

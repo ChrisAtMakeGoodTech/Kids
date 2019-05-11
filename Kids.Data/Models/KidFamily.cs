@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kids.Data
+namespace Kids.Data.Models
 {
-    public partial class UserFamily
+    public partial class KidFamily
     {
-        public int UserId { get; set; }
+        public int KidId { get; set; }
         public int FamilyId { get; set; }
 
         public virtual Family Family { get; set; }
-        public virtual User User { get; set; }
+        public virtual Kid Kid { get; set; }
     }
 }
