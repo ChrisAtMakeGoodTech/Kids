@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://localhost/Kids",
-      "sslPort": 0
+      "applicationUrl": "http://kids.localhost",
+      "sslPort": 443
     },
     "iisExpress": {
       "applicationUrl": "http://localhost:52430",

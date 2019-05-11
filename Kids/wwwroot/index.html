@@ -1,0 +1,129 @@
+﻿<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<title>Kids</title>
+
+	<link rel="preload" as="style" href="/css/bootstrap-4.1.3.css" onload="this.rel='stylesheet'">
+	<link rel="preload" as="style" href="/css/fontawesome-5.6.3.css" onload="this.rel='stylesheet'">
+	<link rel="preload" as="style" href="/css/style.css" onload="this.rel='stylesheet'">
+	<link rel="manifest" href="/manifest.json">
+
+	<link rel="modulepreload" href="/js/addDateFunctions.mjs" />
+	<link rel="modulepreload" href="/js/afterAnimationFrame.mjs" />
+	<link rel="modulepreload" href="/js/autoUpdateData.mjs" />
+	<link rel="modulepreload" href="/js/familyApi.mjs" />
+	<link rel="modulepreload" href="/js/front.mjs" />
+	<link rel="modulepreload" href="/js/kidApi.mjs" />
+	<link rel="modulepreload" href="/js/mobileNav.mjs" />
+	<link rel="modulepreload" href="/js/pwaInstaller.mjs" />
+	<link rel="modulepreload" href="/js/swInstaller.mjs" />
+
+	<script defer src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+					crossorigin="anonymous"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+					crossorigin="anonymous"></script>
+	<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+					crossorigin="anonymous"></script>
+	<script type="module" src="/js/front.mjs"></script>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light" style="background: #3399ff">
+			<div class="container">
+				<a class="navbar-brand" href="#">Kids</a>
+				<button class="btn btn-outline-dark" id="btn-toggle-mobile">Menu</button>
+			</div>
+		</nav>
+	</header>
+	<div id="mobile-nav-wrapper">
+		<div id="close-overlay">
+			<span class="fas fa-times"></span>
+		</div>
+		<div id="mobile-nav-overlay"></div>
+		<nav id="mobile-nav" class="list-group">
+			<div class="list-group-item" id="action-target"></div>
+			<div class="list-group-item">
+				<a id="positive-action-heading" data-toggle="collapse" data-target="#positive-action-list" aria-expanded="false"
+					 aria-controls="positive-action-list">
+					Positive Actions
+				</a>
+
+				<ul class="list-group collapse" id="positive-action-list" aria-labelledby="positive-action-heading"
+						data-parent="#mobile-nav"></ul>
+			</div>
+
+			<div class="list-group-item">
+				<a id="negative-action-heading" data-toggle="collapse" data-target="#negative-action-list" aria-expanded="false"
+					 aria-controls="negative-action-list">
+					Negative Actions
+				</a>
+
+				<ul class="list-group collapse" id="negative-action-list" aria-labelledby="negative-action-heading"
+						data-parent="#mobile-nav"></ul>
+			</div>
+
+		</nav>
+	</div>
+
+	<div class="container">
+		<div id="content" style="display:none;">
+			<table class="table kids-table" v-show="kids.length > 0">
+				<tbody>
+					<template v-for="kid in kids">
+						<tr>
+							<th scope="row" :data-id="kid.id" @click="kid.showDetail = !kid.showDetail">{{kid.name}}</th>
+							<td>
+								{{kid.points}}
+							</td>
+							<td>
+								<div class="btn-group" role="group">
+									<button class="btn btn-success" :data-id="kid.id" onclick="changePoints(1, this.getAttribute('data-id'));">+</button>
+									<button class="btn btn-danger" :data-id="kid.id" onclick="changePoints(-1, this.getAttribute('data-id'));">-</button>
+								</div>
+							</td>
+							<td>
+								<button class="btn btn-primary" :data-id="kid.id" onclick="window.showMobileNav(this.getAttribute('data-id'))">Action</button>
+								<!-- <button class="btn btn-link" :data-id="kid.id" @click="kid.showDetail = !kid.showDetail">Log</button> -->
+							</td>
+						</tr>
+						<tr :data-detail-row="kid.id" v-show="kid.showDetail">
+							<td colspan="4">
+								<table class="table table-borderless">
+									<thead>
+										<tr>
+											<th>Points</th>
+											<th>Note</th>
+											<th>Time</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr v-for="log in kid.log.slice().reverse()" :class="log.points > 0 ? 'table-success' : 'table-danger'">
+											<td>{{ log.points }}</td>
+											<td>{{ log.note }}</td>
+											<td>
+												<input type="checkbox" :id="'logdate_' + log.id" style="display:none" />
+												<label data-name="log-date-label" :for="'logdate_' + log.id">
+													<small>
+														<span data-name="short-log-string">{{ new Date(log.timestamp).showShortLogString() }}</span>
+														<span data-name="full-log-string">{{ new Date(log.timestamp).showLogString() }}</span>
+													</small>
+												</label>
+											</td>
+										</tr>
+									</tbody>
+
+								</table>
+							</td>
+						</tr>
+					</template>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="install-prompt"><button class="btn btn-primary" id="install-button">Install</button></div>
+</body>
+
+</html>

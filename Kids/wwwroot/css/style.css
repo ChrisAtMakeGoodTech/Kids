@@ -1,0 +1,134 @@
+input+label[data-name="log-date-label"] [data-name="short-log-string"] {
+	display: inline;
+}
+
+input+label[data-name="log-date-label"] [data-name="full-log-string"] {
+	display: none;
+}
+
+input:checked+label[data-name="log-date-label"] [data-name="short-log-string"] {
+	display: none;
+}
+
+input:checked+label[data-name="log-date-label"] [data-name="full-log-string"] {
+	display: inline;
+}
+
+.kids-table thead th {
+	border-top: none;
+}
+
+#mobile-nav-wrapper {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 100;
+}
+
+#mobile-nav-overlay {
+	width: 100vw;
+	height: 100vh;
+	background: black;
+	opacity: 0;
+	z-index: 1;
+	transition: opacity 0.2s linear 0s;
+}
+
+.open-nav #mobile-nav-overlay {
+	opacity: 0.7;
+}
+
+.open-nav #mobile-nav {
+	margin-left: 0;
+}
+
+#mobile-nav {
+	z-index: 2;
+	width: 80vw;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	position: fixed;
+	background: black;
+	margin-left: -100%;
+	transition: margin 0.2s linear 0s;
+	overflow-y: auto;
+}
+
+#close-overlay {
+	position: fixed;
+	top: 20px;
+	right: 0;
+	width: 20%;
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	z-index: 3;
+	pointer-events: none;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100vw;
+}
+
+body {
+	padding-top: 56px;
+}
+
+#mobile-nav .list-group-item {
+	border-radius: 0;
+	border: none;
+	padding: 0;
+}
+
+#mobile-nav .list-group-item a {
+	padding: .75rem 1.25rem;
+	display: block;
+}
+
+#mobile-nav .list-group-item .list-group-item a {
+	padding-left: 2rem;
+}
+
+#mobile-nav [data-toggle="collapse"]::before {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	width: 10px;
+	text-align: center;
+}
+
+#mobile-nav [data-toggle="collapse"][aria-expanded="true"]::before {
+	content: "\f0d7";
+}
+
+#mobile-nav [data-toggle="collapse"][aria-expanded="false"]::before {
+	content: "\f0da";
+}
+
+#install-prompt {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	background: black;
+	color: white;
+}
+
+#action-target{
+	display: none;
+}
+#action-target[data-target-id]{
+	display: block;
+	padding-left: .25rem;
+}
