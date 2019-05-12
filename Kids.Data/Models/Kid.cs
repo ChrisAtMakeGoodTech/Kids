@@ -27,6 +27,15 @@ namespace Kids.Data.Models
 
 		}
 
+		public async static Task<IReadOnlyCollection<Kid>> GetAll(KidIncludes includes)
+		{
+			if (includes == null) includes = KidIncludes.None;
+
+			var kids = await KidService.GetAll(includes.DataInclude);
+			return Create(kids);
+
+		}
+
 		internal static Kid Create(EF.Models.Kid kid)
 		{
 			return kid == null ? null : new Kid(kid);

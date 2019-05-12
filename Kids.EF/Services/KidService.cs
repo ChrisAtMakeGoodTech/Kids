@@ -47,6 +47,20 @@ namespace Kids.EF.Services
 			}
 		}
 
+		public async static Task<IReadOnlyCollection<Models.Kid>> GetAll(Includes includes)
+		{
+
+			using (var db = new KidsContext())
+			{
+				IQueryable<Models.Kid> query = db.Kid;
+
+				AddIncludes(ref query, includes);
+
+				return await query.ToListAsync();
+
+			}
+		}
+
 		private static void AddIncludes(ref IQueryable<Models.Kid> query, Includes includes)
 		{
 			if (includes == null) return;
