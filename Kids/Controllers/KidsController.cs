@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Kids.Data;
+using System.Linq;
+using Kids.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kids.Controllers
 {
@@ -9,9 +13,16 @@ namespace Kids.Controllers
 	{
 		// GET api/values
 		[HttpGet]
-		public ActionResult<IEnumerable<string>> Get()
+		public ActionResult<IEnumerable<Kid>> Get()
 		{
-			return new string[] { "value1", "value2" };
+			using (var db = new KidsContext())
+			{
+				var families = db.Family.ToList();
+				var kids = db.Kid.Include(k => k.PointLogEntry).Include(k => k.KidFamily).ToList();
+				var kidFamilies = db.KidFamily.ToList();
+				return kids;
+			}
+			//return new string[] { "value1", "value2" };
 		}
 
 		// GET api/values/5

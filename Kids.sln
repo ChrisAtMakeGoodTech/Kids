@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kids", "Kids\Kids.csproj", "{D2C44D29-D286-4F10-9FFF-D280B04F9607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kids.Data", "Kids.Data\Kids.Data.csproj", "{0E55C588-303C-43BC-AFD1-BB8838ECB46D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kids.Data", "Kids.Data\Kids.Data.csproj", "{0E55C588-303C-43BC-AFD1-BB8838ECB46D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

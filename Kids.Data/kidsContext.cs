@@ -1,12 +1,23 @@
 ﻿using Kids.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Kids.Data
 {
 	public partial class KidsContext : DbContext
 	{
-		const string UserSecretConnectionStringName = "ConnectionString";
+		private const string EnvironmentVariablePrefix = "KIDSVAR_";
+		private const string UserSecretConnectionStringName = "ConnectionString";
+
+		private static string GetConnectionString()
+		{
+			var _Config = new ConfigurationBuilder().AddEnvironmentVariables(EnvironmentVariablePrefix).Build();
+			return _Config[UserSecretConnectionStringName];
+		}
+
+		private static Lazy<string> _ConnectionString = new Lazy<string>(GetConnectionString);
+		private static string ConnectionString => _ConnectionString.Value;
 
 		public KidsContext()
 		{
@@ -27,13 +38,9 @@ namespace Kids.Data
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			
-			
-			
 			if (!optionsBuilder.IsConfigured)
 			{
-				IConfigurationRoot _Config = new ConfigurationBuilder().AddUserSecrets<KidsContext>().Build();
-				optionsBuilder.UseNpgsql(_Config[UserSecretConnectionStringName]);
+				optionsBuilder.UseNpgsql(ConnectionString);
 			}
 		}
 
@@ -68,6 +75,8 @@ namespace Kids.Data
 
 			modelBuilder.Entity<Family>(entity =>
 			{
+				entity.HasKey(e => e.Id).HasName("family_pkey");
+
 				entity.ToTable("family");
 
 				entity.Property(e => e.Id).HasColumnName("id");
@@ -80,6 +89,8 @@ namespace Kids.Data
 
 			modelBuilder.Entity<Kid>(entity =>
 			{
+				entity.HasKey(e => e.Id).HasName("kid_pkey");
+
 				entity.ToTable("kid");
 
 				entity.Property(e => e.Id).HasColumnName("id");

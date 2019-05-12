@@ -32,7 +32,7 @@ namespace Kids
 			{
 				app.UseHsts();
 			}
-
+			
 			app.UseDefaultFiles();
 			app.UseHttpsRedirection();
 			app.UseMvc();
