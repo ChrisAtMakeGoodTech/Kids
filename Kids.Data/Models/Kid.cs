@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Kids.Data.Models
 {
@@ -20,21 +19,5 @@ namespace Kids.Data.Models
 
 		public virtual ICollection<KidFamily> KidFamily { get; set; }
 		public virtual ICollection<PointLogEntry> PointLogEntry { get; set; }
-
-		//private ICollection<Family> _Family;
-		//public ICollection<Family> Family
-		//{
-		//	get
-		//	{
-		//		if (KidFamily == null) return null;
-
-		//		if (_Family == null)
-		//		{
-		//			_Family = KidFamily.Select(kf => kf.Family).ToList();
-		//		}
-
-		//		return _Family;
-		//	}
-		//}
 	}
 }

@@ -1,7 +1,8 @@
-﻿using Kids.Data.Models;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Kids.Data.Models;
 using Microsoft.Extensions.Configuration;
-using System;
 
 namespace Kids.Data
 {
@@ -75,8 +76,6 @@ namespace Kids.Data
 
 			modelBuilder.Entity<Family>(entity =>
 			{
-				entity.HasKey(e => e.Id).HasName("family_pkey");
-
 				entity.ToTable("family");
 
 				entity.Property(e => e.Id).HasColumnName("id");
@@ -89,8 +88,6 @@ namespace Kids.Data
 
 			modelBuilder.Entity<Kid>(entity =>
 			{
-				entity.HasKey(e => e.Id).HasName("kid_pkey");
-
 				entity.ToTable("kid");
 
 				entity.Property(e => e.Id).HasColumnName("id");
@@ -168,7 +165,8 @@ namespace Kids.Data
 
 				entity.Property(e => e.Timestamp)
 									.HasColumnName("timestamp")
-									.HasColumnType("timestamp with time zone");
+									.HasColumnType("timestamp with time zone")
+									.HasDefaultValueSql("now()");
 
 				entity.HasOne(d => d.Event)
 									.WithMany(p => p.PointLogEntry)

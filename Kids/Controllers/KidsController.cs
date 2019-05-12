@@ -4,6 +4,7 @@ using Kids.Data;
 using System.Linq;
 using Kids.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Kids.Controllers
 {
@@ -13,16 +14,17 @@ namespace Kids.Controllers
 	{
 		// GET api/values
 		[HttpGet]
-		public ActionResult<IEnumerable<Kid>> Get()
+		public async Task<ActionResult<IEnumerable<Kid>>> Get()
 		{
 			using (var db = new KidsContext())
 			{
-				var families = db.Family.ToList();
-				var kids = db.Kid.Include(k => k.PointLogEntry).Include(k => k.KidFamily).ToList();
-				var kidFamilies = db.KidFamily.ToList();
+				var families = await db.Family.ToListAsync();
+				var kids = await db.Kid.Include(k => k.PointLogEntry).Include(k => k.KidFamily).ToListAsync();
+				
+				var kidFamilies = await db.KidFamily.ToListAsync();
 				return kids;
 			}
-			//return new string[] { "value1", "value2" };
+			
 		}
 
 		// GET api/values/5
