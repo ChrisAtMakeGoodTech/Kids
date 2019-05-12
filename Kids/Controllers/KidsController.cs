@@ -37,14 +37,6 @@ namespace Kids.Controllers
 			return await KidService.GetById(id, KidIncludes.None);
 		}
 
-		[Route("updatePoints")]
-		[HttpPost]
-		public async Task<IActionResult> UpdatePoints()
-		{
-			return StatusCode(StatusCodes.Status404NotFound);
-			//return StatusCode(StatusCodes.Status200OK);
-		}
-
 		[Route("addEvent")]
 		[HttpPost]
 		public async Task<IActionResult> AddEvent([FromBody]AddEventRequest request)

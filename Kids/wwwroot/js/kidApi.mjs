@@ -44,25 +44,7 @@ export async function addKidAction(kidId, eventId, description, points) {
 }
 
 export async function updatePoints(points, kidId) {
-	const data = {
-		id: kidId,
-		points: points,
-	};
-	const response = await fetch('/api/kids/updatePoints', {
-		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		mode: "cors", // no-cors, cors, *same-origin
-		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-		credentials: "same-origin", // include, *same-origin, omit
-		headers: {
-			"Content-Type": "application/json; charset=utf-8",
-		},
-		redirect: "follow", // manual, *follow, error
-		referrer: "no-referrer", // no-referrer, *client
-		body: JSON.stringify(data), // body data type must match "Content-Type" header
-	});
-
-	return response.status === 200;
-
+	return await addKidAction(kidId, null, null, points);
 }
 
 export async function getKids(appKids) {
