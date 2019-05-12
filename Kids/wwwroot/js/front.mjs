@@ -145,9 +145,7 @@ function updateKidFromFetchData(kid) {
 
 function getKidVersions() {
 	if (app.kids.length === 0) return null;
-	return {
-		versions: app.kids.map(k => [k.id, k.version])
-	};
+	return app.kids.map(k => { return {Id: k.id, Version: k.version} });
 }
 
 import {

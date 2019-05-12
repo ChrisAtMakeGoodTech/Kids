@@ -20,13 +20,13 @@ namespace Kids.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IEnumerable<Kid>> GetUpdates([FromBody] IEnumerable<(int id, int version)> versions)
+		public async Task<IEnumerable<Kid>> GetUpdates([FromBody] IEnumerable<Objects.IdVersion> request)
 		{
-			var ids = versions.Select(v => v.id);
-			var kidVersions = versions.ToDictionary(v => v.id, v => v.version);
-			var kids = (await KidService.GetByIds(ids, KidIncludes.None));
-			return kids.Where(k => kidVersions[k.Id] < k.Version);
-			
+			var ids = request.Select(v => v.Id);
+			var kidVersions = request.ToDictionary(v => v.Id, v => v.Version);
+			var kids = await KidService.GetByIds(ids, KidIncludes.None);
+			return kids.Where(k => kidVersions[k.Id] < k.Version).ToArray();
+
 		}
 
 		[HttpGet("{id}")]
