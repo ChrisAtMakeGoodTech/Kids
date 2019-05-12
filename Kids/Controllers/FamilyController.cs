@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Kids.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kids.Controllers
 {
-	[Route("api/[controller]/[action]")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public class FamilyController : ControllerBase
 	{
 		// GET api/values
-		[HttpPost]
-		public ActionResult<IEnumerable<string>> Index([FromBody] int family)
+		[HttpGet("{id}")]
+		public async Task<object> Index(int id)
 		{
-			return new string[] { "index", family.ToString() };
+			return await FamilyService.GetById(id);
 		}
 
 		[HttpPost()]
