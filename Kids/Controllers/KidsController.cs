@@ -16,7 +16,7 @@ namespace Kids.Controllers
 		[HttpGet]
 		public async Task<IEnumerable<Kid>> Get()
 		{
-			return await KidService.GetAll(KidIncludes.None);
+			return await KidService.GetAll(KidIncludes.Log);
 		}
 
 		[HttpPost]

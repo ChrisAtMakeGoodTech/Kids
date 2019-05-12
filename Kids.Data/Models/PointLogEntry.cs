@@ -8,11 +8,6 @@ namespace Kids.Data.Models
 	public class PointLogEntry
 	{
 
-		public static async Task<PointLogEntry> GetOne(int id)
-		{
-			return await Task.Run(() => (PointLogEntry) null);
-		}
-
 		internal static PointLogEntry Create(EF.Models.PointLogEntry log)
 		{
 			return log == null ? null : new PointLogEntry(log);

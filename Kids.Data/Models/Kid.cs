@@ -28,7 +28,7 @@ namespace Kids.Data.Models
 			BirthDate = kid.BirthDate;
 			Version = kid.Version;
 
-			Logs = kid.PointLogEntry?.Select(e => PointLogEntry.Create(e)).ToList();
+			Log = kid.PointLogEntry?.Select(e => PointLogEntry.Create(e)).ToList();
 
 		}
 
@@ -38,7 +38,7 @@ namespace Kids.Data.Models
 		public DateTime? BirthDate { get; }
 		public int Version { get; }
 
-		public IReadOnlyCollection<PointLogEntry> Logs { get; }
+		public IReadOnlyCollection<PointLogEntry> Log { get; }
 
 		//public virtual ICollection<Family> Family { get; set; }
 		//public virtual ICollection<PointLogEntry> PointLogEntry { get; set; }

@@ -16,7 +16,7 @@ namespace Kids.EF.Services
 				Log = log;
 			}
 
-			internal void Add(IQueryable<Models.Family> query)
+			internal void Add(ref IQueryable<Models.Family> query)
 			{
 				if (User)
 				{

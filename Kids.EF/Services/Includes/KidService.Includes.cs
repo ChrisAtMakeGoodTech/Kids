@@ -16,7 +16,7 @@ namespace Kids.EF.Services
 			public bool Family { get; }
 			public bool Log { get; }
 
-			public void Add(IQueryable<Models.Kid> query)
+			public void Add(ref IQueryable<Models.Kid> query)
 			{
 				if (Log)
 				{

@@ -20,9 +20,8 @@ namespace Kids.Data.Models
 			Id = family.Id;
 			Name = family.Name;
 
-			Events = new List<object>();
+			Events = family.Event == null ? null : Event.Create(family.Event);
 			
-			//Event = new HashSet<Event>();
 			//KidFamily = new HashSet<KidFamily>();
 			//PointLogEntry = new HashSet<PointLogEntry>();
 			//UserFamily = new HashSet<UserFamily>();
@@ -30,7 +29,7 @@ namespace Kids.Data.Models
 
 		public int Id { get; }
 		public string Name { get; }
-		public IEnumerable<object> Events { get; }
+		public IEnumerable<Event> Events { get; }
 
 		//public virtual ICollection<Event> Event { get; set; }
 		//public virtual ICollection<KidFamily> KidFamily { get; set; }

@@ -15,7 +15,7 @@ namespace Kids.EF.Services
 			using (var db = new KidsContext())
 			{
 				var query = db.Kid.Where(k => k.Id == id);
-				includes?.Add(query);
+				includes?.Add(ref query);
 				return await query.FirstOrDefaultAsync();
 			}
 		}
@@ -26,7 +26,7 @@ namespace Kids.EF.Services
 			using (var db = new KidsContext())
 			{
 				var query = db.Kid.Where(k => ids.Contains(k.Id));
-				includes?.Add(query);
+				includes?.Add(ref query);
 				return await query.ToListAsync();
 			}
 		}
@@ -37,7 +37,7 @@ namespace Kids.EF.Services
 			using (var db = new KidsContext())
 			{
 				var query = db.KidFamily.Where(kf => kf.FamilyId == familyId).Include(kf => kf.Kid).ThenInclude(k => k.PointLogEntry).Select(kf => kf.Kid);
-				includes?.Add(query);
+				includes?.Add(ref query);
 				return await query.ToListAsync();
 			}
 		}
@@ -47,8 +47,8 @@ namespace Kids.EF.Services
 
 			using (var db = new KidsContext())
 			{
-				var query = db.Kid;
-				includes?.Add(query);
+				IQueryable<Models.Kid> query = db.Kid;
+				includes?.Add(ref query);
 				return await query.ToListAsync();
 			}
 		}

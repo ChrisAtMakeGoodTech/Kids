@@ -13,7 +13,7 @@ namespace Kids.Controllers
 		[HttpGet("{id}")]
 		public async Task<object> Index(int id)
 		{
-			return await FamilyService.GetById(id);
+			return await FamilyService.GetById(id, Data.Includes.FamilyIncludes.Event);
 		}
 
 		[HttpPost()]

@@ -14,7 +14,7 @@ namespace Kids.EF.Services
 			using (var db = new KidsContext())
 			{
 				var query = db.Family.Where(f => f.Id == id);
-				includes?.Add(query);
+				includes?.Add(ref query);
 
 				return await query.FirstOrDefaultAsync();
 			}
