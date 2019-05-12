@@ -3,8 +3,10 @@
 	public class KidIncludes
 	{
 		public static KidIncludes None { get; } = new KidIncludes(false, false);
+
 		public static KidIncludes Log { get; } = new KidIncludes(true, false);
 		public static KidIncludes Family { get; } = new KidIncludes(false, true);
+
 		public static KidIncludes All { get; } = new KidIncludes(true, true);
 
 		public KidIncludes(bool log, bool family)

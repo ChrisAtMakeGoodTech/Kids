@@ -7,6 +7,7 @@ namespace Kids.EF.Models
 		public User()
 		{
 			UserFamily = new HashSet<UserFamily>();
+			PointLogEntry = new HashSet<PointLogEntry>();
 		}
 
 		public int Id { get; set; }
@@ -16,5 +17,6 @@ namespace Kids.EF.Models
 		public string Password { get; set; }
 
 		public virtual ICollection<UserFamily> UserFamily { get; set; }
+		public virtual ICollection<PointLogEntry> PointLogEntry { get; set; }
 	}
 }

@@ -171,7 +171,7 @@ const actionLITemplate = document.createElement('li');
 actionLITemplate.className = 'list-group-item';
 const actionLIAnchorTemplate = document.createElement('a');
 
-function sortActions(a, b) {
+function sortEvents(a, b) {
 	const nameA = a.description.toLowerCase();
 	const nameB = b.description.toLowerCase();
 	if (nameA < nameB) {
@@ -197,26 +197,24 @@ function getActionListItem(actionId, description, points) {
 
 export async function loadFamily() {
 	const family = await getFamily();
-	const positiveActions = family.actions.filter(action => action.points > 0);
-	const negativeActions = family.actions.filter(action => action.points <= 0);
+	const positiveEvents = family.events.filter(action => action.points > 0);
+	const negativeEvents = family.events.filter(action => action.points <= 0);
 
-	positiveActions.sort(sortActions);
-	negativeActions.sort(sortActions);
+	positiveEvents.sort(sortEvents);
+	negativeEvents.sort(sortEvents);
 
 	const positiveActionList = document.getElementById('positive-action-list');
 	const negativeActionList = document.getElementById('negative-action-list');
 
-	positiveActions.forEach(action => {
+	positiveEvents.forEach(action => {
 		const li = getActionListItem(action.id, action.description, action.points);
 		positiveActionList.appendChild(li);
 	});
 
-	negativeActions.forEach(action => {
+	negativeEvents.forEach(action => {
 		const li = getActionListItem(action.id, action.description, action.points);
 		negativeActionList.appendChild(li);
 	});
-
-	console.log(family);
 };
 
 export async function loadKids() {

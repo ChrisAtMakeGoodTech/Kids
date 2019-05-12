@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Kids.EF.Internal
 {
-	internal partial class KidsContext : DbContext
+	internal class KidsContext : DbContext
 	{
 		private const string EnvironmentVariablePrefix = "KIDSVAR_";
 		private const string UserSecretConnectionStringName = "ConnectionString";
@@ -156,6 +156,8 @@ namespace Kids.EF.Internal
 
 				entity.Property(e => e.KidId).HasColumnName("kidId");
 
+				entity.Property(e => e.UserId).HasColumnName("userId");
+
 				entity.Property(e => e.Note)
 									.HasColumnName("note")
 									.HasMaxLength(255);
@@ -183,6 +185,12 @@ namespace Kids.EF.Internal
 									.HasForeignKey(d => d.KidId)
 									.OnDelete(DeleteBehavior.ClientSetNull)
 									.HasConstraintName("point_log_entry_kidId");
+
+				entity.HasOne(d => d.User)
+									.WithMany(p => p.PointLogEntry)
+									.HasForeignKey(d => d.UserId)
+									.OnDelete(DeleteBehavior.ClientSetNull)
+									.HasConstraintName("point_log_entry_userId");
 			});
 
 			modelBuilder.Entity<User>(entity =>
