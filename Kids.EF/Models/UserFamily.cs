@@ -1,4 +1,4 @@
-﻿namespace Kids.Data.Models
+﻿namespace Kids.EF.Models
 {
 	public partial class UserFamily
 	{

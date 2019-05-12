@@ -1,23 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Kids.Data.Models
+namespace Kids.EF.Models
 {
-	public partial class Family
+	public partial class Kid
 	{
-		public Family()
+		public Kid()
 		{
-			Event = new HashSet<Event>();
 			KidFamily = new HashSet<KidFamily>();
 			PointLogEntry = new HashSet<PointLogEntry>();
-			UserFamily = new HashSet<UserFamily>();
 		}
 
 		public int Id { get; set; }
 		public string Name { get; set; }
+		public int Points { get; set; }
+		public DateTime? BirthDate { get; set; }
+		public int Version { get; set; }
 
-		public virtual ICollection<Event> Event { get; set; }
 		public virtual ICollection<KidFamily> KidFamily { get; set; }
 		public virtual ICollection<PointLogEntry> PointLogEntry { get; set; }
-		public virtual ICollection<UserFamily> UserFamily { get; set; }
 	}
 }

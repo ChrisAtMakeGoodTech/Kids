@@ -1,12 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Kids.Data.Models;
+using Kids.EF.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace Kids.Data
+namespace Kids.EF.Internal
 {
-	public partial class KidsContext : DbContext
+	internal partial class KidsContext : DbContext
 	{
 		private const string EnvironmentVariablePrefix = "KIDSVAR_";
 		private const string UserSecretConnectionStringName = "ConnectionString";

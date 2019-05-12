@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kids", "Kids\Kids.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kids.Data", "Kids.Data\Kids.Data.csproj", "{0E55C588-303C-43BC-AFD1-BB8838ECB46D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kids.EF", "Kids.EF\Kids.EF.csproj", "{F7F0A337-AE0B-49D5-8058-BFB75ED324D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0E55C588-303C-43BC-AFD1-BB8838ECB46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E55C588-303C-43BC-AFD1-BB8838ECB46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E55C588-303C-43BC-AFD1-BB8838ECB46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F0A337-AE0B-49D5-8058-BFB75ED324D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F0A337-AE0B-49D5-8058-BFB75ED324D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F0A337-AE0B-49D5-8058-BFB75ED324D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F0A337-AE0B-49D5-8058-BFB75ED324D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Kids.Data;
-using System.Linq;
 using Kids.Data.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Kids.Data.Includes;
 
 namespace Kids.Controllers
 {
@@ -12,45 +10,21 @@ namespace Kids.Controllers
 	[ApiController]
 	public class KidsController : ControllerBase
 	{
-		// GET api/values
+
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Kid>>> Get()
+		public async Task<IEnumerable<Kid>> Get()
 		{
-			using (var db = new KidsContext())
+			return new List<Kid>
 			{
-				var families = await db.Family.ToListAsync();
-				var kids = await db.Kid.Include(k => k.PointLogEntry).Include(k => k.KidFamily).ToListAsync();
-				
-				var kidFamilies = await db.KidFamily.ToListAsync();
-				return kids;
-			}
-			
+				await Kid.GetById(3, KidIncludes.None)
+			};
 		}
 
-		// GET api/values/5
 		[HttpGet("{id}")]
-		public ActionResult<string> Get(int id)
+		public async Task<Kid> Get(int id)
 		{
-			return "value";
+			return await Kid.GetById(id, KidIncludes.None);
 		}
 
-		// POST api/values
-		[HttpPost]
-		public string Post([FromBody] string value)
-		{
-			return "kids";
-		}
-
-		// PUT api/values/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
-		{
-		}
-
-		// DELETE api/values/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
-		{
-		}
 	}
 }

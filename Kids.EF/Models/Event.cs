@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Kids.Data.Models
+namespace Kids.EF.Models
 {
 	public partial class Event
 	{
