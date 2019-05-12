@@ -18,14 +18,16 @@ function getKidFetchData(appKids) {
 
 }
 
-export async function addKidAction(kidId, actionId, description, points) {
+export async function addKidAction(kidId, eventId, description, points) {
 	const data = {
-		kid: kidId,
-		action: actionId,
-		description: description,
-		points: points,
+		UserId: 4,
+		FamilyId: 1,
+		KidId: kidId,
+		EventId: eventId,
+		Note: description,
+		Points: points,
 	};
-	const response = await fetch('/api/kids/addAction', {
+	const response = await fetch('/api/kids/addEvent', {
 		method: "POST", // *GET, POST, PUT, DELETE, etc.
 		mode: "cors", // no-cors, cors, *same-origin
 		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -38,7 +40,7 @@ export async function addKidAction(kidId, actionId, description, points) {
 		body: JSON.stringify(data), // body data type must match "Content-Type" header
 	});
 
-	return response.status === 200;
+	return response.status >= 200 && response.status < 300;
 }
 
 export async function updatePoints(points, kidId) {

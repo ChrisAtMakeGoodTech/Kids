@@ -7,6 +7,12 @@ namespace Kids.Objects
 {
 	public class IdVersion
 	{
+		public IdVersion(int id, int version)
+		{
+			Id = id;
+			Version = version;
+		}
+
 		public int Id { get; }
 		public int Version { get; }
 	}

@@ -29,5 +29,6 @@ namespace Kids.EF.Services
 				return await query.ToListAsync();
 			}
 		}
+
 	}
 }

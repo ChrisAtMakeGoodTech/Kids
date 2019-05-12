@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Kids.Data.Includes;
 using System.Linq;
 using Kids.Data.Services;
+using Microsoft.AspNetCore.Http;
+using Kids.Objects;
 
 namespace Kids.Controllers
 {
@@ -20,11 +22,11 @@ namespace Kids.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IEnumerable<Kid>> GetUpdates([FromBody] IEnumerable<Objects.IdVersion> request)
+		public async Task<IEnumerable<Kid>> GetUpdates([FromBody] IEnumerable<IdVersion> request)
 		{
-			var ids = request.Select(v => v.Id);
 			var kidVersions = request.ToDictionary(v => v.Id, v => v.Version);
-			var kids = await KidService.GetByIds(ids, KidIncludes.None);
+			var ids = kidVersions.Keys;
+			var kids = await KidService.GetByIds(ids, KidIncludes.Log);
 			return kids.Where(k => kidVersions[k.Id] < k.Version).ToArray();
 
 		}
@@ -35,5 +37,27 @@ namespace Kids.Controllers
 			return await KidService.GetById(id, KidIncludes.None);
 		}
 
+		[Route("updatePoints")]
+		[HttpPost]
+		public async Task<IActionResult> UpdatePoints()
+		{
+			return StatusCode(StatusCodes.Status404NotFound);
+			//return StatusCode(StatusCodes.Status200OK);
+		}
+
+		[Route("addEvent")]
+		[HttpPost]
+		public async Task<IActionResult> AddEvent([FromBody]AddEventRequest request)
+		{
+			var success = await EventLogService.Add(request.UserId, request.FamilyId, request.KidId, request.EventId, request.Points, request.Note);
+			if (success)
+			{
+				return StatusCode(StatusCodes.Status201Created);
+			}
+			else
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError);
+			}
+		}
 	}
 }

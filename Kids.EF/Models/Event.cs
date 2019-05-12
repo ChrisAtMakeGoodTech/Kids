@@ -4,9 +4,26 @@ namespace Kids.EF.Models
 {
 	public partial class Event
 	{
+		public static Event Create(int familyId, string description, int points)
+		{
+			return new Event(familyId, description, points);
+		}
+
+		public static Event Create(Family family, string description, int points)
+		{
+			return new Event(family.Id, description, points);
+		}
+
 		public Event()
 		{
 			PointLogEntry = new HashSet<PointLogEntry>();
+		}
+
+		private Event(int familyId, string description, int points) : this()
+		{
+			FamilyId = familyId;
+			Description = description;
+			Points = points;
 		}
 
 		public int Id { get; set; }
