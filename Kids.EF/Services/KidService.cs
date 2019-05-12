@@ -33,6 +33,19 @@ namespace Kids.EF.Services
 			}
 		}
 
+		public async static Task<IEnumerable<Models.Kid>> GetByIds(IEnumerable<int> ids, Includes includes)
+		{
+
+			using (var db = new KidsContext())
+			{
+				var query = db.Kid.Where(k => ids.Contains(k.Id));
+
+				AddIncludes(ref query, includes);
+
+				return await query.ToListAsync();
+			}
+		}
+
 		public async static Task<IReadOnlyCollection<Models.Kid>> GetByFamily(int familyId, Includes includes)
 		{
 

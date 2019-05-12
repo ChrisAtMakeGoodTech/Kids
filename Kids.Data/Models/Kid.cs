@@ -9,32 +9,6 @@ namespace Kids.Data.Models
 {
 	public class Kid
 	{
-		public async static Task<Kid> GetById(int id, KidIncludes includes)
-		{
-			if (includes == null) includes = KidIncludes.None;
-
-			var kid = await KidService.GetById(id, includes.DataInclude);
-			return Create(kid);
-			
-		}
-
-		public async static Task<IReadOnlyCollection<Kid>> GetByFamily(int id, KidIncludes includes)
-		{
-			if (includes == null) includes = KidIncludes.None;
-
-			var kids = await KidService.GetByFamily(id, includes.DataInclude);
-			return Create(kids);
-
-		}
-
-		public async static Task<IReadOnlyCollection<Kid>> GetAll(KidIncludes includes)
-		{
-			if (includes == null) includes = KidIncludes.None;
-
-			var kids = await KidService.GetAll(includes.DataInclude);
-			return Create(kids);
-
-		}
 
 		internal static Kid Create(EF.Models.Kid kid)
 		{
