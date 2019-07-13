@@ -8,12 +8,12 @@ namespace Kids.EF.Internal
 	internal class KidsContext : DbContext
 	{
 		private const string EnvironmentVariablePrefix = "KIDSVAR_";
-		private const string UserSecretConnectionStringName = "ConnectionString";
+		private const string ConnectionStringEnvVarName = "ConnectionString";
 
 		private static string GetConnectionString()
 		{
 			var _Config = new ConfigurationBuilder().AddEnvironmentVariables(EnvironmentVariablePrefix).Build();
-			return _Config[UserSecretConnectionStringName];
+			return _Config[ConnectionStringEnvVarName];
 		}
 
 		private static Lazy<string> _ConnectionString = new Lazy<string>(GetConnectionString);
