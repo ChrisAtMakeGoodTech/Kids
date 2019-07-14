@@ -1,6 +1,6 @@
 import {
 	loadKids
-} from './front.mjs';
+} from './front.js';
 
 let hidden, visibilityChange, refreshInterval;
 if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 

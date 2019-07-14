@@ -1,12 +1,12 @@
-import afterAnimationFrame from './afterAnimationFrame.mjs';
-import app from './vueApp.mjs';
+import afterAnimationFrame from './afterAnimationFrame.js';
+import app from './vueApp.js';
 
 import {
 	toggleMenuButton,
 	mobileNavOverlay,
 	mobileNavWrapper,
 	actionTarget,
-} from './domElements.mjs';
+} from './domElements.js';
 
 export function showMobileNav(targetId) {
 	if (targetId && typeof targetId !== 'object') {

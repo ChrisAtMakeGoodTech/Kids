@@ -1,21 +1,24 @@
-import pwaInstaller from './pwaInstaller.mjs';
-import swInstaller from './swInstaller.mjs';
-import addDateFunctions from './addDateFunctions.mjs';
+import pwaInstaller from './pwaInstaller.js';
+import swInstaller from './swInstaller.js';
+import addDateFunctions from './addDateFunctions.js';
 import {
 	updatePoints,
 	getKids,
 	addKidAction,
-} from './kidApi.mjs';
+} from './kidApi.js';
 import {
 	getFamily,
-} from './familyApi.mjs';
+} from './familyApi.js';
 import {
 	initMobileNav,
 	hideMobileNav,
 	showMobileNav,
-} from './mobileNav.mjs';
-import autoUpdateData from './autoUpdateData.mjs';
-import app from './vueApp.mjs';
+} from './mobileNav.js';
+import autoUpdateData from './autoUpdateData.js';
+import app from './vueApp.js';
+import {
+	actionTarget,
+} from './domElements.js';
 
 window.hideMobileNav = hideMobileNav;
 window.showMobileNav = showMobileNav;
@@ -147,10 +150,6 @@ function getKidVersions() {
 	if (app.kids.length === 0) return null;
 	return app.kids.map(k => { return {Id: k.id, Version: k.version} });
 }
-
-import {
-	actionTarget
-} from './domElements.mjs';
 
 async function clickKidAction(ev) {
 	const targetId = Number(actionTarget.getAttribute('data-target-id'));

@@ -37,10 +37,6 @@ namespace Kids
 			app.UseHttpsRedirection();
 			app.UseMvc();
 			app.UseStaticFiles();
-
-			// TODO: Why do I have to do this twice?
-			// also TODO: There has to be a better way to add .mjs support.
-			app.UseStaticFiles(new Internal.KidsStaticFileOptions());
 		}
 	}
 	
