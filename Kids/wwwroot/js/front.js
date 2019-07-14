@@ -1,4 +1,3 @@
-import pwaInstaller from './pwaInstaller.js';
 import swInstaller from './swInstaller.js';
 import addDateFunctions from './addDateFunctions.js';
 import {
@@ -23,7 +22,6 @@ import {
 window.hideMobileNav = hideMobileNav;
 window.showMobileNav = showMobileNav;
 
-pwaInstaller(document.getElementById('install-prompt'), document.getElementById('install-button'));
 swInstaller();
 addDateFunctions();
 
